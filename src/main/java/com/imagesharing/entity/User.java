@@ -25,7 +25,7 @@ public class User {
         this.favorites = new HashSet<>();
     }
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "user_favorites")
     public Set<Post> getFavorites() {
         return favorites;

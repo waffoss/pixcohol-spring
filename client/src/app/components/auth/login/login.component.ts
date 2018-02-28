@@ -64,8 +64,10 @@ export class LoginComponent implements OnInit {
             })
 
         } else {
-          this.error = this.data.message;
+          
         }
+
+        this.error = "Wrong email or password";
       });
 
   }
