@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         this.data = res;
         console.log(this.data);
-        if (this.data.success) {
+        if (this.data.success === "true") {
           
           localStorage.setItem('authToken', this.data.token);
           localStorage.setItem('username', this.username);
@@ -61,14 +61,14 @@ export class LoginComponent implements OnInit {
               }
 
               this.router.navigate(['/']);
+              return;
             })
 
-        } else {
-          
-        }
-
-        this.error = "Wrong email or password";
+        } 
       });
+
+      this.error = 'Wrong username or password!';
+      return;
 
   }
 
