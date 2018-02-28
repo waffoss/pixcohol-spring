@@ -1,0 +1,33 @@
+<div class="container">
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card" *ngIf="post">
+        <img class="card-img-top" src="data:image/JPEG;base64,{{post.data}}" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{post.title}}</h4>
+          <p class="card-text">Uploaded by
+            <a routerLink="/profile/{{post.authorId}}">{{post.author}}</a>
+            on {{post.createdAt | date}}
+          </p>
+          <p class="card-text text-primary">
+            {{post.likes.length}} likes
+          </p>
+      
+          <span class="like" *ngIf="isLogged" (click)="like(post.id)">
+            <button *ngIf="post.isLiked" type="button" class="btn btn-danger ">
+              dislike
+            </button>
+            <button *ngIf="!post.isLiked" type="button" class="btn btn-outline-danger">
+              like
+            </button>
+          </span>
+          <a class="btn btn-success" href="data:image/JPEG;base64,{{post.data}}" download="">Download</a>
+          <button *ngIf="myPost" class="btn btn-danger" (click)="delete()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

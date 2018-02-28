@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div *ngIf="user" class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <span>{{user?.email}}</span>
+                    </h4> 
+                </div>
+
+
+                <div class="col-md-12">
+                    <h2>Latest from {{user?.email}}</h2>
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 col-sm-12" *ngFor="let post of latestPosts">
+                            <a routerLink="/post/{{post.id}}">
+                                <span>{{post.title}}</span>
+                                <img class="post-img" src="data:image/JPEG;base64,{{post.data}}" alt="{{post.title}}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

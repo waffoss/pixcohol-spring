@@ -1,0 +1,45 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark ">
+  <a class="navbar-brand" href="#">Pixcohol</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapse()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div [ngbCollapse]="isNavbarCollapse" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      </li>
+    
+     
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a class="nav-link" routerLink="/new" routerLinkActive="active">Upload</a>
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item ">
+        <a class="nav-link" routerLink="/favorites" routerLinkActive="active">Favorites</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+        <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li *ngIf="isAdmin && isLoggedIn" class="nav-item">
+            <a class="nav-link" routerLink="/superuser">Admin panel</a>
+          </li>
+          <li *ngIf="username" class="nav-item">
+              <a class="nav-link" routerLink="/profile/{{userId}}">{{username}}</a>
+            </li>
+          <li *ngIf="isLoggedIn" class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+    </ul>
+
+
+  </div>
+
+  
+</nav>

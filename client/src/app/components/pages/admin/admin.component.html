@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row">
+    <div  class="col-md-12">
+        <div *ngIf="message" class="alert alert-success" role="alert">
+            {{message}}
+          </div>
+
+          <div *ngIf="error" class="alert alert-success" role="alert">
+              {{error}}
+            </div>
+    </div>
+
+    <div class="col-md-6">
+      <form (ngSubmit)="onTagSubmit()" #tagCreateForm="ngForm">
+        <div class="form-group">
+          <label for="tag">Create tag</label>
+          <input type="text" class="form-control" id="tag" placeholder="Enter tag" name="tag" [(ngModel)]="tag">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-12">
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let user of users">
+              <th scope="row">{{user.id}}</th>
+              <td>{{user.email}}</td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>  
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

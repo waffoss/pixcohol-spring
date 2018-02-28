@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="gal">
+      <div *ngFor="let post of posts">
+        <img (click)="showInfo(content,post)" src="data:image/JPEG;base64,{{post.data}}" alt="{{post.title}}">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{currentPost.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="modal-img" src="data:image/JPEG;base64,{{currentPost.data}}" alt="{{currentPost.title}}">
+
+  </div>
+  <div class="modal-footer">
+
+
+    <span>{{currentPost.likes.length}} Likes</span>
+
+    <span>Uploaded by
+      <a routerLink="/profile/{{currentPost.authorId}}">{{currentPost.author}}</a>
+    </span>
+    
+    <span>{{imageDiamentions}}</span>
+    <a routerLink="/post/{{currentPost.id}}">Details</a>
+
+
+    <span class="like" *ngIf="isLogged" (click)="like(currentPost.id)">
+      <button *ngIf="currentPost.isLiked" type="button" class="btn btn-danger">
+        dislike
+      </button>
+      <button *ngIf="!currentPost.isLiked" type="button" class="btn btn-outline-danger">
+        like
+      </button>
+    </span>
+    
+    <span *ngIf="isLogged">
+      <button  class="btn btn-primary" *ngIf="!currentPost.isInFavorites" (click)="addToFavorites(currentPost)">Add to Favorites</button>
+    <button class="btn btn-primary" *ngIf="currentPost.isInFavorites" (click)="addToFavorites(currentPost)">Remove from Favorites</button>
+    </span>
+    <a class="btn btn-success" href="data:image/JPEG;base64,{{currentPost.data}}" download="">Download</a>
+  </div>
+</ng-template>
